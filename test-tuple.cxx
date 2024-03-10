@@ -2,6 +2,16 @@
 #include <tuple>
 #include <typeinfo>
 
+/**
+ * Concepts:
+ * metaprogramming
+ * variadic template
+ * SFINAE
+ * std::tuple
+ * std::enable_if
+ * 
+*/
+
 // Base case: empty tuple
 template <int Idx = 0, typename... Tp>
 inline typename std::enable_if<Idx == sizeof...(Tp), void>::type
@@ -27,8 +37,15 @@ std::ostream& operator<<(std::ostream& out, const std::tuple<Tp...>& t) {
     return out;
 }
 
+template <typename Tp>
+void tuple_size() {
+    std::cout << "tuple_size: " << std::tuple_size<Tp>::value << std::endl;
+}
+
 int main() {
-    std::tuple<int, std::string, float> InputTuple = std::make_tuple(1, "Hello", 3.14);
+    using tuple_t = std::tuple<int, std::string, float>;
+    tuple_t InputTuple = std::make_tuple(1, "Hello", 3.14);
     std::cout << InputTuple << std::endl;
+    tuple_size<tuple_t>();
     return 0;
 }
