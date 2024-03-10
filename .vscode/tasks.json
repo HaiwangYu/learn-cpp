@@ -7,9 +7,12 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
+                "-std=c++17", // Add c++17 flag
                 "${file}",
                 "-o",
-                "${fileDirname}/build/${fileBasenameNoExtension}"
+                "${fileDirname}/build/${fileBasenameNoExtension}",
+                "-lboost_system", // Add the linker flag for Boost System library
+                "-lboost_filesystem"
             ],
             "options": {
                 "cwd": "${fileDirname}"
